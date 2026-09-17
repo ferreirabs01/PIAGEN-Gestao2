@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-width=1.0">
     <title>Mural de Soluções Práticas - IA Generativa</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
         
@@ -20,9 +21,12 @@
             margin: 0 auto 30px;
             border-bottom: 2px solid #34495e;
             padding-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
         }
         
-        .header h1 {
+        .header-title h1 {
             margin: 0;
             color: #2c3e50;
             font-size: 24px;
@@ -30,12 +34,105 @@
             letter-spacing: 1px;
         }
         
-        .header p {
+        .header-title p {
             margin: 5px 0 0;
             color: #7f8c8d;
             font-size: 14px;
         }
+
+        /* Chart Section */
+        .dashboard-section {
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+
+        .chart-center-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .chart-center-text .number {
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c3e50;
+            line-height: 1;
+        }
+
+        .chart-center-text .label {
+            font-size: 12px;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-top: 5px;
+        }
+
+        .dashboard-info {
+            max-width: 500px;
+        }
+
+        .dashboard-info h3 {
+            margin: 0 0 15px 0;
+            color: #2c3e50;
+            font-size: 20px;
+        }
+
+        .dashboard-info p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stat-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .stat-text {
+            font-size: 14px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .stat-pct {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-left: auto;
+        }
         
+        /* Cards Section */
         .mural-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -52,6 +149,12 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
         }
         
         /* Cores temáticas para cada categoria */
@@ -88,6 +191,7 @@
             padding: 4px 8px;
             border-radius: 12px;
             color: white;
+            cursor: help;
         }
         
         .card:nth-child(1) .percent-badge { background-color: #e74c3c; }
@@ -100,7 +204,7 @@
             font-weight: 700;
             margin: 0;
             color: #2c3e50;
-            padding-right: 45px; /* space for badge */
+            padding-right: 45px;
         }
         
         .card-body {
@@ -158,8 +262,49 @@
 <body>
 
     <div class="header">
-        <h1>Mural de Aplicações Práticas</h1>
-        <p>Análise dos gargalos operacionais e soluções via Engenharia de Prompt focadas no SUAS.</p>
+        <div class="header-title">
+            <h1>Mural de Aplicações Práticas</h1>
+            <p>Análise dos gargalos operacionais e soluções via Engenharia de Prompt focadas no SUAS.</p>
+        </div>
+    </div>
+
+    <!-- Nova seção de Gráfico e Resumo -->
+    <div class="dashboard-section">
+        <div class="chart-container">
+            <canvas id="mentionsChart"></canvas>
+            <div class="chart-center-text">
+                <div class="number">33</div>
+                <div class="label">Total de<br>Menções</div>
+            </div>
+        </div>
+        
+        <div class="dashboard-info">
+            <h3>Distribuição Real das Demandas</h3>
+            <p>Os 18 alunos mapearam múltiplos desafios em suas respostas. Para termos uma visão exata de 100% dos focos do curso, categorizamos cada problema citado. No total, foram extraídas <strong>33 menções diretas a problemas operacionais</strong>. Passe o mouse no gráfico para detalhar.</p>
+            
+            <div class="stat-grid">
+                <div class="stat-item">
+                    <div class="stat-color" style="background: #e74c3c;"></div>
+                    <span class="stat-text">Documentação Técnica</span>
+                    <span class="stat-pct">33.3%</span>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-color" style="background: #2ecc71;"></div>
+                    <span class="stat-text">Planejamento e Grupos</span>
+                    <span class="stat-pct">33.3%</span>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-color" style="background: #3498db;"></div>
+                    <span class="stat-text">Gestão de Dados</span>
+                    <span class="stat-pct">24.2%</span>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-color" style="background: #9b59b6;"></div>
+                    <span class="stat-text">Projetos Específicos</span>
+                    <span class="stat-pct">9.1%</span>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="mural-container">
@@ -168,7 +313,7 @@
         <div class="card">
             <div class="card-header">
                 <span class="tag">Documentação Técnica</span>
-                <span class="percent-badge">61%</span>
+                <span class="percent-badge" title="61% dos alunos citaram este desafio">61%</span>
                 <h2 class="card-title">Redação de Relatórios e Laudos</h2>
             </div>
             <div class="card-body">
@@ -181,7 +326,7 @@
                 <div class="prompt-box">
                     Reescreva os tópicos soltos abaixo em formato de relatório técnico para o SUAS, utilizando linguagem neutra, objetiva e impessoal.<br><br>
                     Regra estrita: Não invente dados e mantenha o foco nas condições socioeconômicas.<br><br>
-                    Tópicos brutos: <span class="variable">[INSERIR SUAS ANOTAÇÕES AQUI]</span>
+                    Tópicos brutos: <span class="variable">[INSERIR ANOTAÇÕES]</span>
                 </div>
             </div>
         </div>
@@ -190,22 +335,22 @@
         <div class="card">
             <div class="card-header">
                 <span class="tag">Planejamento</span>
-                <span class="percent-badge">61%</span>
+                <span class="percent-badge" title="61% dos alunos citaram este desafio">61%</span>
                 <h2 class="card-title">Dinâmicas e Grupos</h2>
             </div>
             <div class="card-body">
                 <div class="section-label">Problema Identificado</div>
-                <p class="diagnostico">Necessidade de constante inovação para elaboração de materiais, grupos de idosos/mulheres e acompanhamento do PAIF.</p>
+                <p class="diagnostico">Necessidade de inovação para elaboração de materiais, grupos de idosos/mulheres e acompanhamento do PAIF.</p>
                 
                 <div class="section-label">Solução Prática</div>
                 <p class="diagnostico">Uso da IA como ferramenta de ideação metodológica, estruturando atividades com base em referenciais teóricos.</p>
                 
                 <div class="prompt-box">
-                    Estruture um roteiro de dinâmica de grupo para <span class="variable">[PÚBLICO: ex. mulheres chefes de família]</span> com foco em <span class="variable">[TEMA: ex. fortalecimento de vínculos]</span>.<br><br>
+                    Estruture um roteiro de dinâmica de grupo para <span class="variable">[PÚBLICO]</span> com foco em <span class="variable">[TEMA]</span>.<br><br>
                     O roteiro deve conter:<br>
                     1. Objetivo<br>
                     2. Materiais necessários (baixo custo)<br>
-                    3. Passo a passo detalhado (duração de 40 min).
+                    3. Passo a passo detalhado (40 min).
                 </div>
             </div>
         </div>
@@ -214,20 +359,20 @@
         <div class="card">
             <div class="card-header">
                 <span class="tag">Gestão de Dados</span>
-                <span class="percent-badge">44%</span>
+                <span class="percent-badge" title="44% dos alunos citaram este desafio">44%</span>
                 <h2 class="card-title">Controle em Planilhas</h2>
             </div>
             <div class="card-body">
                 <div class="section-label">Problema Identificado</div>
-                <p class="diagnostico">Dificuldade em filtrar dados específicos (ex: usuários por CRAS), controlar frequência de atendimentos e prazos de ofícios.</p>
+                <p class="diagnostico">Dificuldade em filtrar dados específicos, controlar frequência de atendimentos e prazos de ofícios.</p>
                 
                 <div class="section-label">Solução Prática</div>
-                <p class="diagnostico">Utilizar a IA como assistente de dados para gerar fórmulas de Excel/Sheets, macros ou organizar tabelas a partir de texto.</p>
+                <p class="diagnostico">Utilizar a IA como assistente de dados para gerar fórmulas de Excel/Sheets, macros ou organizar tabelas.</p>
                 
                 <div class="prompt-box">
                     Preciso de uma fórmula para o Google Sheets.<br><br>
                     Tenho uma planilha onde a Coluna A contém "Nome da Unidade" e a Coluna B contém "Data do Ofício".<br><br>
-                    Crie uma fórmula que conte quantas vezes o <span class="variable">[NOME DO CRAS]</span> aparece na Coluna A e destaque de vermelho as datas na Coluna B que já ultrapassaram 15 dias.
+                    Crie uma fórmula que conte quantas vezes o <span class="variable">[NOME DO CRAS]</span> aparece na Col A e destaque de vermelho na Col B prazos > 15 dias.
                 </div>
             </div>
         </div>
@@ -236,25 +381,78 @@
         <div class="card">
             <div class="card-header">
                 <span class="tag">Projetos Específicos</span>
-                <span class="percent-badge">17%</span>
+                <span class="percent-badge" title="17% dos alunos citaram este desafio">17%</span>
                 <h2 class="card-title">Mapeamentos e Ferramentas</h2>
             </div>
             <div class="card-body">
                 <div class="section-label">Problema Identificado</div>
-                <p class="diagnostico">Demandas singulares, como controle de frota (Kwid, Spin, Vans), diagnósticos socioterritoriais e apps interativos.</p>
+                <p class="diagnostico">Demandas singulares, como controle de frota, diagnósticos socioterritoriais e apps interativos.</p>
                 
                 <div class="section-label">Solução Prática</div>
                 <p class="diagnostico">Delegação de estruturação de escopo e cronogramas. A IA converte o problema amplo em etapas acionáveis.</p>
                 
                 <div class="prompt-box">
-                    Construa uma tabela estruturada de manutenção preventiva para a frota da Assistência Social.<br><br>
-                    Veículos: <span class="variable">[LISTA DE VEÍCULOS, ex: Spin 2021, Master Diesel 2018]</span>.<br><br>
-                    Cruze os veículos com os itens: Óleo, Filtros e Freios indicando a periodicidade recomendada (em KM) para cada modelo.
+                    Construa uma tabela de manutenção preventiva para frota.<br><br>
+                    Veículos: <span class="variable">[LISTA: Spin, Master]</span>.<br><br>
+                    Cruze os veículos com: Óleo, Filtros e Freios indicando a periodicidade (em KM) para cada modelo.
                 </div>
             </div>
         </div>
 
     </div>
 
+    <script>
+        const ctx = document.getElementById('mentionsChart').getContext('2d');
+        const mentionsChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Documentação Técnica', 'Planejamento e Grupos', 'Gestão de Dados', 'Projetos Específicos'],
+                datasets: [{
+                    data: [11, 11, 8, 3],
+                    backgroundColor: [
+                        '#e74c3c', // Red
+                        '#2ecc71', // Green
+                        '#3498db', // Blue
+                        '#9b59b6'  // Purple
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                cutout: '75%',
+                plugins: {
+                    legend: {
+                        display: false // Ocultamos a legenda padrão pois já fizemos uma customizada ao lado
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(44, 62, 80, 0.9)',
+                        titleFont: { size: 14, family: 'Roboto' },
+                        bodyFont: { size: 14, family: 'Roboto' },
+                        padding: 12,
+                        cornerRadius: 8,
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                const total = context.dataset.data.reduce((acc, val) => acc + val, 0);
+                                const value = context.raw;
+                                const percentage = ((value / total) * 100).toFixed(1) + '%';
+                                label += value + ' menções (' + percentage + ')';
+                                return label;
+                            }
+                        }
+                    }
+                },
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
+                }
+            }
+        });
+    </script>
 </body>
 </html>
