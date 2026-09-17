@@ -204,7 +204,7 @@
             font-weight: 700;
             margin: 0;
             color: #2c3e50;
-            padding-right: 45px;
+            padding-right: 55px;
         }
         
         .card-body {
@@ -264,11 +264,11 @@
     <div class="header">
         <div class="header-title">
             <h1>Mural de Aplicações Práticas</h1>
-            <p>Análise dos gargalos operacionais e soluções via Engenharia de Prompt focadas no SUAS.</p>
+            <p>Análise de demandas operacionais e soluções via Engenharia de Prompt (Baseado em 33 menções diretas).</p>
         </div>
     </div>
 
-    <!-- Nova seção de Gráfico e Resumo -->
+    <!-- Seção de Gráfico e Resumo -->
     <div class="dashboard-section">
         <div class="chart-container">
             <canvas id="mentionsChart"></canvas>
@@ -280,7 +280,7 @@
         
         <div class="dashboard-info">
             <h3>Distribuição Real das Demandas</h3>
-            <p>Os 18 alunos mapearam múltiplos desafios em suas respostas. Para termos uma visão exata de 100% dos focos do curso, categorizamos cada problema citado. No total, foram extraídas <strong>33 menções diretas a problemas operacionais</strong>. Passe o mouse no gráfico para detalhar.</p>
+            <p>Os desafios mapeados foram categorizados com base em <strong>33 menções diretas</strong> extraídas das respostas, permitindo uma visualização exata (100%) dos focos do curso. Passe o mouse no gráfico para ver os detalhes e termos citados em cada categoria.</p>
             
             <div class="stat-grid">
                 <div class="stat-item">
@@ -313,7 +313,7 @@
         <div class="card">
             <div class="card-header">
                 <span class="tag">Documentação Técnica</span>
-                <span class="percent-badge" title="61% dos alunos citaram este desafio">61%</span>
+                <span class="percent-badge" title="Representa 33.3% do total de 33 menções mapeadas">33.3%</span>
                 <h2 class="card-title">Redação de Relatórios e Laudos</h2>
             </div>
             <div class="card-body">
@@ -335,7 +335,7 @@
         <div class="card">
             <div class="card-header">
                 <span class="tag">Planejamento</span>
-                <span class="percent-badge" title="61% dos alunos citaram este desafio">61%</span>
+                <span class="percent-badge" title="Representa 33.3% do total de 33 menções mapeadas">33.3%</span>
                 <h2 class="card-title">Dinâmicas e Grupos</h2>
             </div>
             <div class="card-body">
@@ -359,7 +359,7 @@
         <div class="card">
             <div class="card-header">
                 <span class="tag">Gestão de Dados</span>
-                <span class="percent-badge" title="44% dos alunos citaram este desafio">44%</span>
+                <span class="percent-badge" title="Representa 24.2% do total de 33 menções mapeadas">24.2%</span>
                 <h2 class="card-title">Controle em Planilhas</h2>
             </div>
             <div class="card-body">
@@ -381,7 +381,7 @@
         <div class="card">
             <div class="card-header">
                 <span class="tag">Projetos Específicos</span>
-                <span class="percent-badge" title="17% dos alunos citaram este desafio">17%</span>
+                <span class="percent-badge" title="Representa 9.1% do total de 33 menções mapeadas">9.1%</span>
                 <h2 class="card-title">Mapeamentos e Ferramentas</h2>
             </div>
             <div class="card-body">
@@ -403,6 +403,15 @@
 
     <script>
         const ctx = document.getElementById('mentionsChart').getContext('2d');
+        
+        // Detalhes extras para exibir no Tooltip
+        const tooltipDetails = [
+            ['Exemplos citados:', '• Relatórios sociais e laudos', '• Evolução de prontuários', '• Otimização de tempo de registro'],
+            ['Exemplos citados:', '• Dinâmicas com grupos (idosos/mulheres)', '• Planos de acompanhamento (PAIF)', '• Materiais de apresentação e ações'],
+            ['Exemplos citados:', '• Automação de planilhas', '• Controle de prazos de ofícios', '• Filtragem de dados (SUAS net)'],
+            ['Exemplos citados:', '• Diagnóstico socioterritorial', '• App para inclusão (Gov.br)', '• Tabela de manutenção de frota']
+        ];
+
         const mentionsChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
@@ -424,25 +433,30 @@
                 cutout: '75%',
                 plugins: {
                     legend: {
-                        display: false // Ocultamos a legenda padrão pois já fizemos uma customizada ao lado
+                        display: false 
                     },
                     tooltip: {
-                        backgroundColor: 'rgba(44, 62, 80, 0.9)',
-                        titleFont: { size: 14, family: 'Roboto' },
-                        bodyFont: { size: 14, family: 'Roboto' },
-                        padding: 12,
+                        backgroundColor: 'rgba(44, 62, 80, 0.95)',
+                        titleFont: { size: 15, family: 'Roboto', weight: 'bold' },
+                        bodyFont: { size: 13, family: 'Roboto' },
+                        padding: 15,
                         cornerRadius: 8,
+                        displayColors: false,
                         callbacks: {
-                            label: function(context) {
-                                let label = context.label || '';
-                                if (label) {
-                                    label += ': ';
-                                }
-                                const total = context.dataset.data.reduce((acc, val) => acc + val, 0);
-                                const value = context.raw;
+                            title: function(context) {
+                                const item = context[0];
+                                const total = item.dataset.data.reduce((acc, val) => acc + val, 0);
+                                const value = item.raw;
                                 const percentage = ((value / total) * 100).toFixed(1) + '%';
-                                label += value + ' menções (' + percentage + ')';
-                                return label;
+                                return `${item.label} (${percentage})`;
+                            },
+                            label: function(context) {
+                                return `Total: ${context.raw} menções diretas.`;
+                            },
+                            afterLabel: function(context) {
+                                // Adiciona as linhas extras de detalhamento no balão de hover
+                                const details = tooltipDetails[context.dataIndex];
+                                return [''].concat(details); // linha vazia para dar espaçamento
                             }
                         }
                     }
