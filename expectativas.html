@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-width=1.0">
-    <title>Mural de Soluções - Consultoria IA</title>
+    <title>Mural de Soluções Práticas - IA Generativa</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
         
@@ -56,14 +56,15 @@
         
         /* Cores temáticas para cada categoria */
         .card:nth-child(1) { border-top-color: #e74c3c; } /* Relatórios */
-        .card:nth-child(2) { border-top-color: #3498db; } /* Planilhas */
-        .card:nth-child(3) { border-top-color: #2ecc71; } /* Planejamento */
-        .card:nth-child(4) { border-top-color: #9b59b6; } /* Gestão */
+        .card:nth-child(2) { border-top-color: #2ecc71; } /* Planejamento */
+        .card:nth-child(3) { border-top-color: #3498db; } /* Planilhas */
+        .card:nth-child(4) { border-top-color: #9b59b6; } /* Projetos */
         
         .card-header {
             padding: 15px 20px;
             background-color: #f8f9fa;
             border-bottom: 1px solid #eee;
+            position: relative;
         }
         
         .tag {
@@ -77,12 +78,29 @@
             color: #555;
             margin-bottom: 8px;
         }
+
+        .percent-badge {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 12px;
+            color: white;
+        }
+        
+        .card:nth-child(1) .percent-badge { background-color: #e74c3c; }
+        .card:nth-child(2) .percent-badge { background-color: #2ecc71; }
+        .card:nth-child(3) .percent-badge { background-color: #3498db; }
+        .card:nth-child(4) .percent-badge { background-color: #9b59b6; }
         
         .card-title {
             font-size: 18px;
             font-weight: 700;
             margin: 0;
             color: #2c3e50;
+            padding-right: 45px; /* space for badge */
         }
         
         .card-body {
@@ -140,8 +158,8 @@
 <body>
 
     <div class="header">
-        <h1>Mural de Ação: Consultoria IA</h1>
-        <p>Diagnóstico de problemas operacionais e soluções aplicáveis via Engenharia de Prompt.</p>
+        <h1>Mural de Aplicações Práticas</h1>
+        <p>Análise dos gargalos operacionais e soluções via Engenharia de Prompt focadas no SUAS.</p>
     </div>
 
     <div class="mural-container">
@@ -150,17 +168,18 @@
         <div class="card">
             <div class="card-header">
                 <span class="tag">Documentação Técnica</span>
-                <h2 class="card-title">Gargalo na Redação de Relatórios e Laudos</h2>
+                <span class="percent-badge">61%</span>
+                <h2 class="card-title">Redação de Relatórios e Laudos</h2>
             </div>
             <div class="card-body">
                 <div class="section-label">Problema Identificado</div>
                 <p class="diagnostico">Alto volume de tempo gasto na transcrição de atendimentos e estruturação de textos formais para prontuários.</p>
                 
-                <div class="section-label">Solução Proposta</div>
+                <div class="section-label">Solução Prática</div>
                 <p class="diagnostico">Automação da estruturação textual. O profissional insere anotações brutas e a IA formata no padrão técnico exigido.</p>
                 
                 <div class="prompt-box">
-                    Atue como um Assistente Social experiente. Reescreva os tópicos soltos abaixo em formato de relatório técnico, utilizando linguagem neutra, objetiva e impessoal.<br><br>
+                    Reescreva os tópicos soltos abaixo em formato de relatório técnico para o SUAS, utilizando linguagem neutra, objetiva e impessoal.<br><br>
                     Regra estrita: Não invente dados e mantenha o foco nas condições socioeconômicas.<br><br>
                     Tópicos brutos: <span class="variable">[INSERIR SUAS ANOTAÇÕES AQUI]</span>
                 </div>
@@ -170,39 +189,19 @@
         <!-- CARD 2 -->
         <div class="card">
             <div class="card-header">
-                <span class="tag">Gestão de Dados</span>
-                <h2 class="card-title">Descontrole em Planilhas e Demandas</h2>
-            </div>
-            <div class="card-body">
-                <div class="section-label">Problema Identificado</div>
-                <p class="diagnostico">Dificuldade em filtrar dados específicos (ex: usuários por CRAS), controlar frequência de atendimentos e prazos de ofícios.</p>
-                
-                <div class="section-label">Solução Proposta</div>
-                <p class="diagnostico">Utilizar a IA como analista de dados para gerar fórmulas de Excel/Sheets, macros ou organizar tabelas a partir de texto.</p>
-                
-                <div class="prompt-box">
-                    Preciso de uma fórmula para o Google Sheets.<br><br>
-                    Tenho uma planilha onde a Coluna A contém "Nome da Unidade" e a Coluna B contém "Data do Ofício".<br><br>
-                    Crie uma fórmula que conte quantas vezes o <span class="variable">[NOME DO CRAS]</span> aparece na Coluna A e destaque de vermelho as datas na Coluna B que já ultrapassaram o prazo de 15 dias de hoje.
-                </div>
-            </div>
-        </div>
-
-        <!-- CARD 3 -->
-        <div class="card">
-            <div class="card-header">
                 <span class="tag">Planejamento</span>
-                <h2 class="card-title">Escassez de Novas Dinâmicas para Grupos</h2>
+                <span class="percent-badge">61%</span>
+                <h2 class="card-title">Dinâmicas e Grupos</h2>
             </div>
             <div class="card-body">
                 <div class="section-label">Problema Identificado</div>
                 <p class="diagnostico">Necessidade de constante inovação para elaboração de materiais, grupos de idosos/mulheres e acompanhamento do PAIF.</p>
                 
-                <div class="section-label">Solução Proposta</div>
-                <p class="diagnostico">Uso da IA como ferramenta de brainstorming metodológico, estruturando atividades com base em referenciais teóricos (SUAS).</p>
+                <div class="section-label">Solução Prática</div>
+                <p class="diagnostico">Uso da IA como ferramenta de ideação metodológica, estruturando atividades com base em referenciais teóricos.</p>
                 
                 <div class="prompt-box">
-                    Atue como facilitador de grupos no SUAS. Estruture um roteiro de dinâmica de grupo para <span class="variable">[PÚBLICO-ALVO: ex. mulheres chefes de família]</span> com foco em <span class="variable">[TEMA: ex. fortalecimento de vínculos]</span>.<br><br>
+                    Estruture um roteiro de dinâmica de grupo para <span class="variable">[PÚBLICO: ex. mulheres chefes de família]</span> com foco em <span class="variable">[TEMA: ex. fortalecimento de vínculos]</span>.<br><br>
                     O roteiro deve conter:<br>
                     1. Objetivo<br>
                     2. Materiais necessários (baixo custo)<br>
@@ -211,23 +210,46 @@
             </div>
         </div>
 
-        <!-- CARD 4 -->
+        <!-- CARD 3 -->
         <div class="card">
             <div class="card-header">
-                <span class="tag">Demandas Complexas</span>
-                <h2 class="card-title">Mapeamentos e Projetos de Gestão</h2>
+                <span class="tag">Gestão de Dados</span>
+                <span class="percent-badge">44%</span>
+                <h2 class="card-title">Controle em Planilhas</h2>
             </div>
             <div class="card-body">
                 <div class="section-label">Problema Identificado</div>
-                <p class="diagnostico">Demandas fora do padrão, como controle de frota (Kwid, Spin, Vans), diagnósticos socioterritoriais e apps interativos.</p>
+                <p class="diagnostico">Dificuldade em filtrar dados específicos (ex: usuários por CRAS), controlar frequência de atendimentos e prazos de ofícios.</p>
                 
-                <div class="section-label">Solução Proposta</div>
+                <div class="section-label">Solução Prática</div>
+                <p class="diagnostico">Utilizar a IA como assistente de dados para gerar fórmulas de Excel/Sheets, macros ou organizar tabelas a partir de texto.</p>
+                
+                <div class="prompt-box">
+                    Preciso de uma fórmula para o Google Sheets.<br><br>
+                    Tenho uma planilha onde a Coluna A contém "Nome da Unidade" e a Coluna B contém "Data do Ofício".<br><br>
+                    Crie uma fórmula que conte quantas vezes o <span class="variable">[NOME DO CRAS]</span> aparece na Coluna A e destaque de vermelho as datas na Coluna B que já ultrapassaram 15 dias.
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="tag">Projetos Específicos</span>
+                <span class="percent-badge">17%</span>
+                <h2 class="card-title">Mapeamentos e Ferramentas</h2>
+            </div>
+            <div class="card-body">
+                <div class="section-label">Problema Identificado</div>
+                <p class="diagnostico">Demandas singulares, como controle de frota (Kwid, Spin, Vans), diagnósticos socioterritoriais e apps interativos.</p>
+                
+                <div class="section-label">Solução Prática</div>
                 <p class="diagnostico">Delegação de estruturação de escopo e cronogramas. A IA converte o problema amplo em etapas acionáveis.</p>
                 
                 <div class="prompt-box">
                     Construa uma tabela estruturada de manutenção preventiva para a frota da Assistência Social.<br><br>
                     Veículos: <span class="variable">[LISTA DE VEÍCULOS, ex: Spin 2021, Master Diesel 2018]</span>.<br><br>
-                    A tabela deve cruzar os veículos com os seguintes itens: Óleo, Filtros, Freios e Pneus, indicando a periodicidade recomendada (em KM) para cada componente e modelo.
+                    Cruze os veículos com os itens: Óleo, Filtros e Freios indicando a periodicidade recomendada (em KM) para cada modelo.
                 </div>
             </div>
         </div>
