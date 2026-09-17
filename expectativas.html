@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-width=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>IA Generativa na Assistência Social</title>
+    
+    <!-- Configuração do Reveal.js via CDN para visualização direta no navegador -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tema customizado buscando tons profissionais e acolhedores -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        
+        :root {
+            --r-background-color: #f4f6f9;
+            --r-main-font: 'Inter', sans-serif;
+            --r-main-font-size: 38px;
+            --r-main-color: #2c3e50;
+            --r-heading-font: 'Inter', sans-serif;
+            --r-heading-color: #1a5276;
+            --r-heading-text-transform: none;
+            --r-heading-font-weight: 800;
+            --r-link-color: #e67e22;
+            --r-link-color-hover: #d35400;
+            --r-selection-background-color: #1a5276;
+            --r-selection-color: #fff;
+        }
+
+        .reveal .slides section,
+        .reveal .slides section>section {
+            line-height: 1.4;
+            font-weight: inherit;
+        }
+
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+            margin: 0 0 20px 0;
+            letter-spacing: -0.02em;
+        }
+
+        .reveal h1 { font-size: 2.2em; }
+        .reveal h2 { font-size: 1.6em; border-bottom: 3px solid #e67e22; display: inline-block; padding-bottom: 10px;}
+        .reveal h3 { font-size: 1.2em; color: #34495e; }
+
+        .reveal p { margin: 20px 0; }
+
+        .reveal ul {
+            display: inline-block;
+            text-align: left;
+            margin: 0 0 0 1em;
+        }
+
+        .reveal li { margin-bottom: 15px; }
+
+        /* Estilos de Cartões para tópicos */
+        .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            width: 380px;
+            border-left: 6px solid #1a5276;
+            text-align: left;
+        }
+
+        .card h4 {
+            color: #1a5276;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .card ul {
+            font-size: 0.85em;
+            margin-left: 20px;
+        }
+        
+        .card li { margin-bottom: 8px;}
+
+        /* Chamadas para ação / Destaques */
+        .highlight-box {
+            background: #eaf2f8;
+            border: 2px solid #a9cce3;
+            border-radius: 8px;
+            padding: 20px;
+            font-size: 0.9em;
+            color: #1a5276;
+            margin-top: 30px;
+        }
+        
+        .icon { font-size: 1.5em; vertical-align: middle; margin-right: 10px;}
+        
+        /* Tema Escuro para título */
+        .title-slide {
+            background-color: #1a5276;
+        }
+        .title-slide h1, .title-slide p {
+            color: #ffffff;
+        }
+        .title-slide h1 { text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+        .title-slide .subtitle { color: #f39c12; font-weight: 600; font-size: 1.2em;}
+        
+    </style>
+</head>
+<body>
+
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- Capa -->
+            <section data-state="title-slide" class="title-slide">
+                <h1 style="border: none;">IA Generativa na Prática</h1>
+                <p class="subtitle">Otimizando a Rotina da Assistência Social</p>
+                <p style="font-size: 0.8em; opacity: 0.8; margin-top: 50px;">Apresentação do Roteiro de Aulas (40 Horas)</p>
+            </section>
+
+            <!-- Alinhamento de Expectativas -->
+            <section>
+                <h2>Nós ouvimos vocês</h2>
+                <p>Analisamos as respostas do formulário para entender os <strong>desafios reais</strong> do dia a dia.</p>
+                
+                <div style="display: flex; justify-content: center; gap: 40px; margin-top: 40px;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 3em;">⏱️</div>
+                        <p style="font-size: 0.8em; font-weight: 600;">Tempo gasto<br>com registros</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 3em;">📊</div>
+                        <p style="font-size: 0.8em; font-weight: 600;">Organização de<br>dados e planilhas</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 3em;">💡</div>
+                        <p style="font-size: 0.8em; font-weight: 600;">Necessidade de novas<br>ideias e dinâmicas</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Como será a abordagem -->
+            <section>
+                <h2>A Abordagem do Curso</h2>
+                <p>Transformamos essas necessidades em um roteiro 100% focado em <strong>aplicabilidade imediata</strong>.</p>
+                
+                <div class="card-container">
+                    <div class="card" style="border-left-color: #27ae60;">
+                        <h4><span class="icon">🛠️</span> 1. Foco na Rotina</h4>
+                        <p style="font-size: 0.8em;">Não vamos focar apenas em teoria da computação, mas em como a IA resolve <strong>o seu</strong> problema de amanhã.</p>
+                    </div>
+                    <div class="card" style="border-left-color: #e67e22;">
+                        <h4><span class="icon">🔒</span> 2. Segurança e Ética</h4>
+                        <p style="font-size: 0.8em;">Regra de ouro: Como usar a IA sem comprometer dados sensíveis dos usuários (anonimização de prontuários).</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Módulo 1 -->
+            <section>
+                <h2>Módulo 1: Produtividade Documental</h2>
+                <h3>(10 Horas)</h3>
+                
+                <p>Solucionando a maior demanda: o tempo consumido por registros.</p>
+                
+                <ul>
+                    <li><strong>Privacidade:</strong> O que nunca digitar no ChatGPT.</li>
+                    <li><strong>Engenharia de Prompt:</strong> Como dar o comando certo para obter um texto técnico e objetivo.</li>
+                    <li><strong>Estruturação:</strong> Transformar anotações brutas de atendimentos em laudos, pareceres e relatórios sociais coesos.</li>
+                    <li><strong>Revisão:</strong> Melhorando a clareza textual dos documentos.</li>
+                </ul>
+            </section>
+
+            <!-- Módulo 2 -->
+            <section>
+                <h2>Módulo 2: Dados e Planilhas</h2>
+                <h3>(10 Horas)</h3>
+                
+                <p>Descomplicando o SUAS net, ofícios e controles de frequência.</p>
+                
+                <ul>
+                    <li><strong>IA como Assistente:</strong> Pedindo para a IA criar fórmulas para Excel/Google Sheets.</li>
+                    <li><strong>Gestão de Fluxos:</strong> Automação para planilhas de controle de ofícios, prazos e rotinas de atendimento.</li>
+                    <li><strong>Filtragem e Organização:</strong> Técnicas para cruzar dados de usuários (idade, território) e organizar informações do CRAS/CREAS.</li>
+                </ul>
+            </section>
+
+            <!-- Módulo 3 -->
+            <section>
+                <h2>Módulo 3: Planejamento Criativo</h2>
+                <h3>(10 Horas)</h3>
+                
+                <p>A IA como parceira metodológica.</p>
+                
+                <ul>
+                    <li><strong>Dinâmicas de Grupo:</strong> Geração de ideias para atividades com idosos, mulheres, crianças e adolescentes.</li>
+                    <li><strong>Intervenção Técnica:</strong> Sugestões de planos de acompanhamento (PAIF) baseados em referenciais teóricos.</li>
+                    <li><strong>Material Gráfico e Apresentações:</strong> Roteirização de conteúdo para atividades coletivas e oficinas.</li>
+                </ul>
+            </section>
+
+            <!-- Módulo 4 -->
+            <section>
+                <h2>Módulo 4: Laboratório Prático</h2>
+                <h3>(10 Horas)</h3>
+                
+                <p>Onde as demandas específicas ganham vida.</p>
+                
+                <div class="highlight-box">
+                    <strong>Resolução dos Casos do Formulário:</strong>
+                    <ul style="margin-top: 15px; margin-bottom: 0;">
+                        <li>Estruturação do mapa de violência e diagnóstico territorial.</li>
+                        <li>Plano de manutenção preventiva da frota (Chevrolet, Renault, Fiat, VW).</li>
+                        <li>Ideação do app interativo para idosos acessarem o Gov.br.</li>
+                        <li><em>Traga o seu problema atual para resolvermos em sala.</em></li>
+                    </ul>
+                </div>
+            </section>
+            
+            <!-- Encerramento -->
+            <section data-state="title-slide" class="title-slide">
+                <h1 style="border: none;">Vamos começar?</h1>
+                <p style="margin-top: 40px;">A IA não substitui o olhar humano do assistente social.<br><span style="color: #f39c12;">Ela otimiza o tempo para que você possa focar no que realmente importa: as pessoas.</span></p>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Scripts do Reveal.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            controls: true,
+            progress: true,
+            center: true,
+            transition: 'slide' // none/fade/slide/convex/concave/zoom
+        });
+    </script>
+</body>
+</html>

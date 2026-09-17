@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-width=1.0">
+    <title>Curso de IA Generativa - Materiais</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f6f9;
+            color: #2c3e50;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        header {
+            background-color: #1a5276;
+            color: white;
+            width: 100%;
+            text-align: center;
+            padding: 50px 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+        }
+        
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            letter-spacing: -0.02em;
+        }
+        
+        header p {
+            margin: 15px 0 0;
+            color: #a9cce3;
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+        
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 60px 20px;
+            width: 100%;
+            max-width: 1200px;
+            box-sizing: border-box;
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            width: 100%;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border-top: 6px solid #e67e22;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+        }
+        
+        .card-content {
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-icon {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .card-title {
+            font-size: 1.4em;
+            color: #1a5276;
+            margin: 0 0 15px;
+            font-weight: 600;
+        }
+        
+        .card-desc {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            flex: 1;
+            font-size: 0.95em;
+        }
+        
+        .card-button {
+            display: inline-block;
+            background-color: #e67e22;
+            color: white;
+            text-decoration: none;
+            padding: 14px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            transition: background-color 0.2s;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 0.05em;
+        }
+        
+        .card-button:hover {
+            background-color: #d35400;
+        }
+        
+        footer {
+            padding: 20px;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9em;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>IA Generativa na Assistência Social</h1>
+        <p>Portal de Materiais e Apresentações do Curso (40 Horas)</p>
+    </header>
+    
+    <main>
+        <div class="card-container">
+            <!-- Card da Apresentação de Expectativas -->
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-icon">🎯</div>
+                    <h2 class="card-title">Expectativas e Roteiro</h2>
+                    <p class="card-desc">Análise detalhada das respostas do formulário de diagnóstico e apresentação interativa do roteiro estratégico das aulas.</p>
+                    <a href="expectativas.html" class="card-button" target="_blank">Acessar Apresentação</a>
+                </div>
+            </div>
+            
+            <!-- Espaço para futuros materiais -->
+            <!-- 
+            <div class="card" style="border-top-color: #7f8c8d; opacity: 0.7;">
+                <div class="card-content">
+                    <div class="card-icon">🔒</div>
+                    <h2 class="card-title" style="color: #7f8c8d;">Módulo 1 (Em breve)</h2>
+                    <p class="card-desc">Material sobre Privacidade, Ética e Engenharia de Prompt para documentação técnica.</p>
+                    <span class="card-button" style="background-color: #bdc3c7; cursor: not-allowed;">Indisponível</span>
+                </div>
+            </div> 
+            -->
+        </div>
+    </main>
+    
+    <footer>
+        <p>Material de Apoio Educacional</p>
+    </footer>
+</body>
+</html>
